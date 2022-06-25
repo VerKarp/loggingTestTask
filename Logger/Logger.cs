@@ -37,6 +37,8 @@ namespace SimpleLogger
             }
         }
 
+        public static void Log(Exception ex) => Log(Level.Error, ex.Message);
+
         private static MethodBase GetCallingMethodBase()
         {
             var stackTrace = new StackTrace();

@@ -1,4 +1,5 @@
 ﻿using SimpleLogger;
+using System;
 
 namespace loggingTestTask
 {
@@ -8,6 +9,15 @@ namespace loggingTestTask
         {
             Logger.Log(Logger.Level.Info, "Проверка работоспособности");
             Logger.Log(Logger.Level.Warn, "Работает?");
+
+            try
+            {
+                throw new Exception();
+            }
+            catch (Exception e)
+            {
+                Logger.Log(e);
+            }
         }
     }
 }
