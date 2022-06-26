@@ -2,15 +2,13 @@
 
 namespace SimpleLogger
 {
-    class LogMessage
+    public class LogMessage
     {
         public DateTime Time { get; set; }
         public LogLevel Level { get; set; }
         public string Class { get; set; }
         public string Method { get; set; }
         public string Message { get; set; }
-
-        public LogMessage() { }
 
         public LogMessage(DateTime date, LogLevel level, string callingClass, string method, string text)
         {
