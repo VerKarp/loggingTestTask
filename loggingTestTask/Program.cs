@@ -1,4 +1,5 @@
 ﻿using SimpleLogger;
+using SimpleLogger.TargetLogs;
 using System;
 
 namespace loggingTestTask
@@ -7,17 +8,23 @@ namespace loggingTestTask
     {
         static void Main()
         {
-            Logger.Log(Logger.Level.Info, "Проверка работоспособности");
-            Logger.Log(Logger.Level.Warn, "Работает?");
+            LogHelper.Log(LogTarget.Db, LogLevel.Info, "Проверка записи лога в БД");
+
+            LogHelper.Log(LogTarget.File, LogLevel.Info, "Проверка записи лога в файл");
 
             try
             {
                 throw new Exception();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Logger.Log(e);
+                LogHelper.Log(LogTarget.Db, ex);
             }
+
+            LogHelper.Log(LogTarget.Db, LogLevel.Warn, "test");
+
+            DbLogger dbLogger = new();
+            dbLogger.Log(new LogMessage(DateTime.Now, LogLevel.Debug, "Program", "Main", "Debug"));
         }
     }
 }
